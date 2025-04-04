@@ -21,11 +21,13 @@ function handleIntersection(entries, observer) {
   });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  const canvases = document.querySelectorAll(".splineCanvas");
+// Directly executing the scene-loading logic without waiting for DOMContentLoaded
+const canvases = document.querySelectorAll(".splineCanvas");
+
+if (canvases.length > 0) {  // Ensure canvases are present before initializing observer
   const observer = new IntersectionObserver(handleIntersection, { rootMargin: "200px" });
 
   canvases.forEach(canvas => {
     observer.observe(canvas);
   });
-});
+}
