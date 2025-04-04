@@ -5,22 +5,11 @@ function loadSplineScene(canvas) {
   if (!url) return;
 
   canvas.style.display = "block";
-  adjustCanvasSize(canvas);
 
   const app = new Application(canvas);
   app.load(url)
     .then(() => console.log(`Spline scene loaded: ${url}`))
     .catch(err => console.error(`Error loading Spline scene: ${url}`, err));
-}
-
-function adjustCanvasSize(canvas) {
-  if (window.innerWidth < 768) {
-    canvas.style.width = "100%";
-    canvas.style.height = "300px";
-  } else {
-    canvas.style.width = "100%";
-    canvas.style.height = "600px";
-  }
 }
 
 function handleIntersection(entries, observer) {
@@ -38,13 +27,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
   canvases.forEach(canvas => {
     observer.observe(canvas);
-  });
-});
-
-window.addEventListener("resize", () => {
-  document.querySelectorAll(".splineCanvas").forEach(canvas => {
-    if (canvas.style.display === "block") {
-      adjustCanvasSize(canvas);
-    }
   });
 });
