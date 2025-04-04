@@ -23,7 +23,7 @@ function handleIntersection(entries, observer) {
 
 document.addEventListener("DOMContentLoaded", function () {
   const canvases = document.querySelectorAll(".splineCanvas");
-  const observer = new IntersectionObserver(handleIntersection, { rootMargin: "100px" });
+  const observer = new IntersectionObserver(handleIntersection, { rootMargin: "200px" });
 
   canvases.forEach(canvas => {
     observer.observe(canvas);
