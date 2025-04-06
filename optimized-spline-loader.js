@@ -1,4 +1,4 @@
-// Optimized and Isolated Spline Scene Loader
+// Optimized and Isolated Spline Scene Loader with Smooth Transition Handling
 
 import { Application } from 'https://unpkg.com/@splinetool/runtime@latest';
 
@@ -14,10 +14,7 @@ function loadSplineScene(canvas) {
   const offscreenCanvas = document.createElement("canvas");
   offscreenCanvas.width = canvas.width;
   offscreenCanvas.height = canvas.height;
-  setTimeout(() => {
-  offscreenCanvas.style.opacity = "1";
-}, 50); // Slight delay to ensure rendering starts before fading in
-
+  offscreenCanvas.style.opacity = "0.01"; // Slightly visible to allow rendering
   offscreenCanvas.style.transition = "opacity 0.5s ease-in-out";
 
   const app = new Application(offscreenCanvas);
@@ -31,9 +28,11 @@ function loadSplineScene(canvas) {
     .then(() => {
       canvas.replaceWith(offscreenCanvas); // Replace original canvas with loaded scene
       sceneCache.set(url, offscreenCanvas); // Cache the rendered scene
-      requestAnimationFrame(() => {
-        offscreenCanvas.style.opacity = "1"; // Fade in smoothly
-      });
+
+      setTimeout(() => {
+        offscreenCanvas.style.opacity = "1"; // Trigger fade-in
+      }, 100); // Delay ensures rendering begins before fade-in occurs
+
       console.log(`Spline scene loaded: ${url}`);
     })
     .catch(err => console.error(`Error loading Spline scene: ${url}`, err));
