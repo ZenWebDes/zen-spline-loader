@@ -14,7 +14,10 @@ function loadSplineScene(canvas) {
   const offscreenCanvas = document.createElement("canvas");
   offscreenCanvas.width = canvas.width;
   offscreenCanvas.height = canvas.height;
-  offscreenCanvas.style.opacity = "0"; // Start hidden for fade-in
+  setTimeout(() => {
+  offscreenCanvas.style.opacity = "1";
+}, 50); // Slight delay to ensure rendering starts before fading in
+
   offscreenCanvas.style.transition = "opacity 0.5s ease-in-out";
 
   const app = new Application(offscreenCanvas);
