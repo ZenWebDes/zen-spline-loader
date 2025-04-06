@@ -29,11 +29,11 @@ function loadSplineScene(canvas) {
       canvas.replaceWith(offscreenCanvas); // Replace original canvas with loaded scene
       sceneCache.set(url, offscreenCanvas); // Cache the rendered scene
 
+      // Ensure the fade-in transition is applied correctly
       setTimeout(() => {
         offscreenCanvas.style.opacity = "1"; // Trigger fade-in
-      }, 100); // Delay ensures rendering begins before fade-in occurs
-
-      console.log(`Spline scene loaded: ${url}`);
+        console.log(`Spline scene fully loaded and visible: ${url}`);
+      }, 300); // Increased delay to ensure rendering is complete
     })
     .catch(err => console.error(`Error loading Spline scene: ${url}`, err));
 }
